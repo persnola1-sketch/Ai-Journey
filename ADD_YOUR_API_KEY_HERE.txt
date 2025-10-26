@@ -1,0 +1,72 @@
+═══════════════════════════════════════════════════════════════════
+  🔑 HOW TO ADD YOUR OPENAI API KEY - QUICK FIX
+═══════════════════════════════════════════════════════════════════
+
+The server cannot start because the .env file is empty!
+
+OPTION 1: MANUAL (Quick & Easy)
+────────────────────────────────────────────────────────────────────
+
+1. Open this file in Notepad:
+   G:\cursor\Mia OS\ai-journey-companion\.env
+
+2. Delete everything and paste this (replace with YOUR key):
+
+   OPENAI_API_KEY=sk-your-actual-api-key-here
+
+3. Save the file
+
+4. Run: npm run server
+
+
+OPTION 2: INTERACTIVE SETUP
+────────────────────────────────────────────────────────────────────
+
+Run this command in the terminal:
+
+   cd "G:\cursor\Mia OS\ai-journey-companion"
+   node setup-env.js
+
+Then paste your API key when prompted.
+
+
+WHERE TO GET YOUR API KEY:
+────────────────────────────────────────────────────────────────────
+
+1. Go to: https://platform.openai.com/api-keys
+2. Sign up or log in
+3. Click "Create new secret key"
+4. Copy the key (it starts with "sk-")
+5. Paste it in the .env file
+
+
+EXAMPLE .env FILE:
+────────────────────────────────────────────────────────────────────
+
+OPENAI_API_KEY=sk-proj-abc123def456xyz789...
+
+
+IMPORTANT NOTES:
+────────────────────────────────────────────────────────────────────
+
+✓ The key MUST start with "sk-"
+✓ No quotes needed around the key
+✓ No spaces before or after the =
+✓ Save the file after editing
+✓ The .env file should have ONLY this one line
+
+
+AFTER ADDING THE KEY:
+────────────────────────────────────────────────────────────────────
+
+Run:  npm run server
+
+You should see:
+   🚀 AI Journey Companion Backend is running!
+   📡 API endpoint: http://localhost:3001/api/chat
+   🔑 OpenAI API Key: ✅ Loaded
+
+Then refresh http://localhost:5173 and start chatting!
+
+═══════════════════════════════════════════════════════════════════
+

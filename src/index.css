@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Prevent horizontal scroll globally */
+  html {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  body {
+    @apply bg-white text-neutral-900 font-sans antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Dark mode */
+  .dark body {
+    @apply bg-neutral-950 text-neutral-100;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Ensure all text wraps properly */
+  p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Pre blocks need special handling for code */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  /* Responsive images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  /* Clean button styles */
+  .btn-primary {
+    @apply bg-neutral-900 text-white px-4 py-2 rounded-md font-medium
+           hover:bg-neutral-800 active:bg-neutral-950
+           transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2;
+  }
+  
+  .dark .btn-primary {
+    @apply bg-white text-neutral-900 hover:bg-neutral-100 active:bg-neutral-200
+           focus:ring-neutral-600;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-neutral-300 text-neutral-700 px-4 py-2 rounded-md font-medium
+           hover:bg-neutral-50 hover:border-neutral-400 active:bg-neutral-100
+           transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2;
+  }
+  
+  .dark .btn-secondary {
+    @apply bg-neutral-900 border-neutral-700 text-neutral-200
+           hover:bg-neutral-800 hover:border-neutral-600 active:bg-neutral-700
+           focus:ring-neutral-600;
+  }
+
+  /* Minimal card */
+  .card {
+    @apply bg-white border border-neutral-200 rounded-lg p-4
+           transition-colors duration-150;
+  }
+  
+  .dark .card {
+    @apply bg-neutral-900 border-neutral-800;
+  }
+  
+  .card-hover {
+    @apply card hover:border-neutral-300;
+  }
+  
+  .dark .card-hover {
+    @apply hover:border-neutral-700;
+  }
+
+  /* Input styles */
+  .input {
+    @apply bg-white border border-neutral-300 rounded-md px-3 py-2 text-neutral-900
+           placeholder:text-neutral-400
+           focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent
+           transition-colors duration-150;
+  }
+  
+  .dark .input {
+    @apply bg-neutral-900 border-neutral-700 text-neutral-100
+           placeholder:text-neutral-500
+           focus:ring-accent-400;
+  }
+
+  .chat-message {
+    @apply max-w-[90%] text-sm leading-relaxed whitespace-pre-wrap tracking-tight text-neutral-800 dark:text-neutral-100;
+  }
+
+  .chat-message.message-user {
+    @apply bg-neutral-100 dark:bg-neutral-900/60 px-4 py-3 rounded-lg shadow-sm text-neutral-900 dark:text-neutral-100;
+  }
+
+  .chat-message.message-ai {
+    @apply bg-transparent text-neutral-800 dark:text-neutral-100;
+  }
+
+  .chat-message.message-error {
+    @apply border border-red-200 dark:border-red-600 bg-red-50/70 dark:bg-red-900/10 px-4 py-3 rounded-lg text-red-600 dark:text-red-300;
+  }
+
+  .message-dot {
+    @apply mt-2 h-2 w-2 rounded-full;
+  }
+
+  .message-dot-ai {
+    @apply bg-neutral-400 dark:bg-neutral-600;
+  }
+
+  .message-dot-user {
+    @apply bg-neutral-500 dark:bg-neutral-400;
+  }
+
+  .message-dot-error {
+    @apply bg-red-500 dark:bg-red-400;
+  }
+}
+
+/* Better scrollbars on desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-neutral-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-700;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-600;
+  }
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom selection color */
+::selection {
+  @apply bg-accent-200 text-neutral-900;
+}
+
+.dark ::selection {
+  @apply bg-accent-800 text-neutral-100;
+}
+
+/* Focus visible styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-accent-500 ring-offset-2;
+}
+
+.dark :focus-visible {
+  @apply ring-accent-400 ring-offset-neutral-950;
+}
+
+/* Typing indicator animation */
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.typing-dot {
+  animation: typing-dot 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Custom scrollbar for chat */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 dark:bg-neutral-700 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-400 dark:bg-neutral-600;
+}
